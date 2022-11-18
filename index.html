@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop watch</title>
+
+    <style>
+        body {
+            background-image: url("img.webp");
+
+            text-align: center;
+
+        }
+
+        fieldset {
+            background-image: linear-gradient(rgb(255, 128, 0), yellow);
+            border-color: brown;
+            border-radius: 815px;
+            margin: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            border: 2px rgb(184, 172, 37);
+            border-radius: 15px;
+            color: rgb(202, 215, 15);
+            display: inline-block;
+            background-color: rgb(0, 0, 0);
+            width: 100px;
+            ;
+        }
+
+        .btn {
+            border-radius: 800px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: rgb(184, 172, 37);
+            background-color: rgb(0, 0, 0);
+        }
+
+
+        @media screen and (min-width: 320px) {
+            body {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <fieldset class="fld">
+        <div class="body">
+            <div >
+                <h1>stop watch</h1>
+            </div>
+            <div class="fld">
+                <h1 id="min">0</h1>
+                <h1 id="sec">0</h1>
+                <h1 id="msec">0</h1>
+            </div>
+            <div class="fld">
+                <button onclick="start()" class="btn" id="button">start</button>
+                <button onclick="pause()" class="btn">pause</button>
+                <button onclick="reset()" class="btn">reset</button>
+            </div>
+        </div>
+    </fieldset>
+</body>
+
+
+
+<script>
+    let button = document.getElementById("button")
+
+    let min = 0
+    let sec = 0
+    let msec = 0
+
+    let minHeading = document.getElementById('min')
+    let secHeading = document.getElementById("sec")
+    let msecHeading = document.getElementById("msec")
+    let interval;
+    function timer() {
+        msec++;
+        msecHeading.innerHTML = msec;
+        if (msec >= 100) {
+            sec++;
+            secHeading.innerHTML = sec
+            msec = 0
+        }
+        else if (sec >= 60) {
+            min++;
+            sec = 0;
+            minHeading.innerHTML = min
+
+        }
+
+    }
+    function start() {
+        interval = setInterval(timer, 10)
+        button.disabled = true
+    }
+
+    function pause() {
+        clearInterval(interval)
+        button.disabled = false
+    }
+    function reset() {
+        min = 0;
+        sec = 0;
+        msec = 0;
+        minHeading.innerHTML = min;
+        secHeading.innerHTML = sec;
+        msecHeading.innerHTML = msec;
+        stop()
+        button.disabled = false
+    }
+
+</script>
+
+
+</html>
